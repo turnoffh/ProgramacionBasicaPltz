@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!-- para navegadores viejos -->
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Piedra, papel o tijera</title>
+        <script>
+            //1 Piedra, 2 Papel, 3 Tijera
+            let jugador = 0;
+            let computadora = Math.floor(Math.random() * 3) + 1;
+            jugador = prompt("Elige: 1 Piedra, 2 Papel, 3 Tijera");
+            if(jugador == 1){
+                alert("Elegiste Piedra");
+            } else if(jugador == 2){
+                alert("Elegiste Papel");
+            } else if(jugador == 3){
+                alert("Elegiste Tijera");
+            } else {
+                alert("Elegiste Perder");
+            }
+
+            if(computadora == 1){
+                alert("PC Elige Piedra");
+            } else if(computadora == 2){
+                alert("PC Elige Papel");
+            } else if(computadora == 3){
+                alert("PC Elige Tijera");
+            } 
+
+            //Juego
+            if(jugador == computadora){
+                alert("EMPATE");
+            } else if((jugador == 1 && computadora == 3) || (jugador == 2 && computadora == 1) || (jugador == 3 && computadora == 2)){
+                alert("GANASTE");
+            } else {
+                alert("PERDISTE");
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>Juego de Piedra, Papel o Tijera</h1>
+        <p>Este es un juego simple de piedra, papel o tijera.</p>
+    </body>
+</html>
