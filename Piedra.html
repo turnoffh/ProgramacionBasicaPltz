@@ -21,6 +21,17 @@
                 }
                 return resultado;
             }
+            function combate(jugador, pc){
+                let resultado = "";
+                if(jugador == pc){
+                    resultado = "EMPATE";
+                } else if((jugador == 1 && pc == 3) || (jugador == 2 && pc == 1) || (jugador == 3 && pc == 2)){
+                    resultado = "GANASTE";
+                } else {
+                    resultado = "PERDISTE";
+                }
+                return resultado;
+            }
             //1 Piedra, 2 Papel, 3 Tijera
             let jugador = 0;
             let computadora = 0;
@@ -31,18 +42,11 @@
                 jugador = prompt("Elige: 1 Piedra, 2 Papel, 3 Tijera");
                 alert("PC elige: " + eleccion(pc));
                 alert("Jugador elige: " + eleccion(jugador));
-
-                //Juego
-                if(jugador == pc){
-                    alert("EMPATE");
-                } else if((jugador == 1 && pc == 3) || (jugador == 2 && pc == 1) || (jugador == 3 && pc == 2)){
-                    alert("GANASTE");
+                if(combate(jugador, pc) == "GANASTE"){
                     triunfos++;
                 } else {
-                    alert("PERDISTE");
                     derrotas++;
                 }
-
             }
             alert("Partida terminada. Ganaste: " + triunfos + " veces. Perdiste: " + derrotas + " veces.");
             if(triunfos == 3){
