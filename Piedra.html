@@ -23,19 +23,34 @@
             }
             //1 Piedra, 2 Papel, 3 Tijera
             let jugador = 0;
-            let computadora = aleatorio(1, 3);
-            jugador = prompt("Elige: 1 Piedra, 2 Papel, 3 Tijera");
-            alert("PC elige: " + eleccion(computadora));
-            alert("Jugador elige: " + eleccion(jugador));
+            let computadora = 0;
+            let triunfos = 0;
+            let derrotas = 0;
+            while(triunfos < 3 && derrotas < 3){
+                pc = aleatorio(1, 3);
+                jugador = prompt("Elige: 1 Piedra, 2 Papel, 3 Tijera");
+                alert("PC elige: " + eleccion(pc));
+                alert("Jugador elige: " + eleccion(jugador));
 
-            //Juego
-            if(jugador == computadora){
-                alert("EMPATE");
-            } else if((jugador == 1 && computadora == 3) || (jugador == 2 && computadora == 1) || (jugador == 3 && computadora == 2)){
-                alert("GANASTE");
-            } else {
-                alert("PERDISTE");
+                //Juego
+                if(jugador == pc){
+                    alert("EMPATE");
+                } else if((jugador == 1 && pc == 3) || (jugador == 2 && pc == 1) || (jugador == 3 && pc == 2)){
+                    alert("GANASTE");
+                    triunfos++;
+                } else {
+                    alert("PERDISTE");
+                    derrotas++;
+                }
+
             }
+            alert("Partida terminada. Ganaste: " + triunfos + " veces. Perdiste: " + derrotas + " veces.");
+            if(triunfos == 3){
+                alert("Felicidades, ganaste la partida.");
+            } else {
+                alert("Lo siento, perdiste la partida.");
+            }
+            
 
         </script>
     </head>
