@@ -17,20 +17,42 @@ function seleccionarMascotaJugador() {
     let tucapalma = document.getElementById('tucapalma');
     let pydos = document.getElementById('pydos');
     if (hipodoge.checked) {
-        mascotaJugador.innerHTML = 'Hipodoge';
+        mascotaJugador.innerHTML = 'HIPODOGE';
     } else if (capipepo.checked) {
-        mascotaJugador.innerHTML = 'Capipepo';
+        mascotaJugador.innerHTML = 'CAPIPEPO';
     } else if (ratigueya.checked) {
-        mascotaJugador.innerHTML = 'Ratigueya';
+        mascotaJugador.innerHTML = 'RATIGUEYA';
     } else if (langostelvis.checked) {
-        mascotaJugador.innerHTML = 'Langostelvis';
+        mascotaJugador.innerHTML = 'LANGOSTELVIS';
     } else if (tucapalma.checked) {
-        mascotaJugador.innerHTML = 'Tucapalma';
+        mascotaJugador.innerHTML = 'TUCAPALMA';
     } else if (pydos.checked) {
-        mascotaJugador.innerHTML = 'Pydos';
+        mascotaJugador.innerHTML = 'PYDOS';
     } else {
         alert('Selecciona una mascota');
     }
+    seleccionarMascotaEnemigo();
 }
 
+function seleccionarMascotaEnemigo() {
+    let numeroAleatorio = aleatorio(1, 6);
+    let mascotaEnemigo = document.getElementById('mascota-enemigo');
+    if (numeroAleatorio == 1) {
+        mascotaEnemigo.innerHTML = 'HIPODOGE';
+    } else if (numeroAleatorio == 2) {
+        mascotaEnemigo.innerHTML = 'CAPIPEPO';
+    } else if (numeroAleatorio == 3) {
+        mascotaEnemigo.innerHTML = 'RATIGUEYA';
+    } else if (numeroAleatorio == 4) {
+        mascotaEnemigo.innerHTML = 'LANGOSTELVIS';
+    } else if (numeroAleatorio == 5) {
+        mascotaEnemigo.innerHTML = 'TUCAPALMA';
+    } else {
+        mascotaEnemigo.innerHTML = 'PYDOS';
+    }
+}
+
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 window.addEventListener('load', iniciarJuego); //Cuando el navegador cargue, se ejecuta la función iniciarJuego
