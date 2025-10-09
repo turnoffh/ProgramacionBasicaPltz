@@ -9,6 +9,7 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
+    let mascotaJugador = document.getElementById('mascota-jugador');
     let hipodoge = document.getElementById('hipodoge');
     let capipepo = document.getElementById('capipepo');
     let ratigueya = document.getElementById('ratigueya');
@@ -16,17 +17,19 @@ function seleccionarMascotaJugador() {
     let tucapalma = document.getElementById('tucapalma');
     let pydos = document.getElementById('pydos');
     if (hipodoge.checked) {
-        alert('Seleccionaste a Hipodoge');
+        mascotaJugador.innerHTML = 'Hipodoge';
     } else if (capipepo.checked) {
-        alert('Seleccionaste a Capipepo');
+        mascotaJugador.innerHTML = 'Capipepo';
     } else if (ratigueya.checked) {
-        alert('Seleccionaste a Ratigueya');
+        mascotaJugador.innerHTML = 'Ratigueya';
     } else if (langostelvis.checked) {
-        alert('Seleccionaste a Langostelvis');
+        mascotaJugador.innerHTML = 'Langostelvis';
     } else if (tucapalma.checked) {
-        alert('Seleccionaste a Tucapalma');
+        mascotaJugador.innerHTML = 'Tucapalma';
     } else if (pydos.checked) {
-        alert('Seleccionaste a Pydos');
+        mascotaJugador.innerHTML = 'Pydos';
+    } else {
+        alert('Selecciona una mascota');
     }
 }
 
