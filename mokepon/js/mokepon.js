@@ -1,4 +1,5 @@
 let ataqueJugador;
+let ataqueEnemigo;
 
 function iniciarJuego() {
     let botonMascotaJugador = document.getElementById('boton-mascota');
@@ -58,14 +59,32 @@ function seleccionarMascotaEnemigo() {
 
 function ataqueFuego() {
     ataqueJugador = 'FUEGO';
+    document.getElementById('ataque-jugador').innerHTML = ataqueJugador;
+    ataqueAleatorioEnemigo();
 }
 
 function ataqueAgua() {
     ataqueJugador = 'AGUA';
+    document.getElementById('ataque-jugador').innerHTML = ataqueJugador;
+    ataqueAleatorioEnemigo();
 }
 
 function ataqueTierra() {
     ataqueJugador = 'TIERRA';
+    document.getElementById('ataque-jugador').innerHTML = ataqueJugador;
+    ataqueAleatorioEnemigo();
+}
+
+function ataqueAleatorioEnemigo() {
+    let ataqueAleatorio = aleatorio(1, 3);
+    if (ataqueAleatorio == 1) {
+        ataqueEnemigo = 'FUEGO';
+    } else if (ataqueAleatorio == 2) {
+        ataqueEnemigo = 'AGUA';
+    } else {
+        ataqueEnemigo = 'TIERRA';
+    }
+    document.getElementById('ataque-enemigo').innerHTML = ataqueEnemigo;
 }
 
 function aleatorio(min, max) {
