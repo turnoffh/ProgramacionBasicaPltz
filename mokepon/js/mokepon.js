@@ -6,6 +6,10 @@ let vidasEnemigo;
 function iniciarJuego() {
     vidasJugador = 3;
     vidasEnemigo = 3;
+    let selAtaque = document.getElementById('seleccionar-ataque');
+    selAtaque.style.display = 'none';
+    let secMensajes = document.getElementById('mensajes');
+    secMensajes.style.display = 'none';
     let botonMascotaJugador = document.getElementById('boton-mascota');
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
     let botonFuego = document.getElementById('boton-fuego');
@@ -20,6 +24,7 @@ function iniciarJuego() {
     vidasEnemigoHtml.innerHTML = vidasEnemigo;
     let botonReiniciar = document.getElementById('boton-reiniciar');
     botonReiniciar.addEventListener('click', reiniciarJuego);
+
 }
 
 function seleccionarMascotaJugador() {
@@ -48,6 +53,12 @@ function seleccionarMascotaJugador() {
     seleccionarMascotaEnemigo();
     let botonMascotaJugador = document.getElementById('boton-mascota');
     botonMascotaJugador.disabled = true;
+    let selAtaque = document.getElementById('seleccionar-ataque');
+    selAtaque.style.display = 'block';
+    let secMensajes = document.getElementById('mensajes');
+    secMensajes.style.display = 'block';
+    let secSeleccionarMascota = document.getElementById('seleccionar-mascota');
+    secSeleccionarMascota.style.display = 'none';
 }
 
 function seleccionarMascotaEnemigo() {
