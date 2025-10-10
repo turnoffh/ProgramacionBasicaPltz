@@ -49,6 +49,7 @@ function seleccionarMascotaJugador() {
         mascotaJugador.innerHTML = 'PYDOS';
     } else {
         alert('Selecciona una mascota');
+        return;
     }
     seleccionarMascotaEnemigo();
     let botonMascotaJugador = document.getElementById('boton-mascota');
