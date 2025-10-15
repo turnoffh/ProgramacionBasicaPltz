@@ -1,0 +1,17 @@
+/* selector de tipo */
+h1 {
+    color: lightcoral;
+}
+
+/* selector de clase */
+.titulo {
+    color: hotpink;
+    width: 330px;
+    height: 50px;
+    background-color: teal;
+}
+
+/* selector de id */
+#titulo {
+    color: blueviolet;
+}
