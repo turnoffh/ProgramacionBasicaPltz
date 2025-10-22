@@ -1,17 +1,87 @@
-/* selector de tipo */
+/* selector de tipo 
 h1 {
     color: lightcoral;
 }
-
-/* selector de clase */
+*/
+/* selector de clase 
 .titulo {
     color: hotpink;
     width: 330px;
     height: 50px;
     background-color: teal;
-}
+} */
 
-/* selector de id */
+/* selector de id 
 #titulo {
     color: blueviolet;
+}
+/*
+label {
+    background-color: tomato;
+    width: 330px;
+    height: 50px;
+}
+
+input{
+    background-color: aqua;
+    width: 330px;
+    height: 50px;
+}
+
+button {
+    background-color: limegreen;
+    width: 330px;
+    height: 50px;
+}*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body{
+    font-family: 'Fredoka One', cursive;
+    background-color: #041562;
+}
+
+#seleccionar-mascota{
+    /* vamos a usar flexbox */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* alineacion vertical  */
+    align-items: center; /* alineacion horizontal */
+}
+
+.titulo {
+    color: white;
+    font-size: 32px;
+} 
+
+.subtitulo{
+    color: white;
+    font-size: 20px;
+}
+
+.tarjetas{
+    display: flex;
+    gap: 10px;
+}
+
+.tarjeta-mokepon{ /*Armamos la cajita*/ 
+    width: 180px;
+    height: 100px;
+    background: #11468F;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+.tarjeta-mokepon img{
+    width: 80px;
+
+}
+
+
+input{
+    display: none;
 }

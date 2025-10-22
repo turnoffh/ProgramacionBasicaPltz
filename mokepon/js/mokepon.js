@@ -36,7 +36,7 @@ function seleccionarMascotaJugador() {
     let tucapalma = document.getElementById('tucapalma');
     let pydos = document.getElementById('pydos');
     if (hipodoge.checked) {
-        mascotaJugador.innerHTML = 'HIPODOGE';
+        mascotaJugador.innerHTML = 'SAMUEL';
     } else if (capipepo.checked) {
         mascotaJugador.innerHTML = 'CAPIPEPO';
     } else if (ratigueya.checked) {
