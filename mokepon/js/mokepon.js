@@ -55,7 +55,7 @@ function seleccionarMascotaJugador() {
     let botonMascotaJugador = document.getElementById('boton-mascota');
     botonMascotaJugador.disabled = true;
     let selAtaque = document.getElementById('seleccionar-ataque');
-    selAtaque.style.display = 'block';
+    selAtaque.style.display = 'flex';
     let secMensajes = document.getElementById('mensajes');
     secMensajes.style.display = 'block';
     let secSeleccionarMascota = document.getElementById('seleccionar-mascota');

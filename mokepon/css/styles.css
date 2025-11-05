@@ -92,7 +92,24 @@ body {
     margin-top: 30px;
 }
 
-
 input{
     display: none;
+}
+
+#seleccionar-ataque{
+    display:flex;
+    flex-direction: column;
+    justify-content: center; /* alineacion vertical  */
+    align-items: center; /* alineacion horizontal */
+}
+
+.ataque{
+    background-color: #11468F;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border-color: transparent;
+    width: 100px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
 }
