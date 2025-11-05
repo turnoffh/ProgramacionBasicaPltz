@@ -15,24 +15,7 @@ h1 {
 #titulo {
     color: blueviolet;
 }
-/*
-label {
-    background-color: tomato;
-    width: 330px;
-    height: 50px;
-}
-
-input{
-    background-color: aqua;
-    width: 330px;
-    height: 50px;
-}
-
-button {
-    background-color: limegreen;
-    width: 330px;
-    height: 50px;
-}*/
+*/
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap');
 
@@ -52,6 +35,7 @@ body {
 .titulo {
     color: white;
     font-size: 32px;
+    font-family: 'Fredoka One', cursive;
 } 
 
 .subtitulo{
@@ -59,7 +43,7 @@ body {
     font-size: 20px;
 }
 
-.tarjetas{
+.tarjetas, .tarjetas-ataques{ /*contenedor de las tarjetas*/
     display: flex;
     gap: 10px;
 }
@@ -75,6 +59,7 @@ body {
     color: white;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 .tarjeta-mokepon img{
     width: 80px;
@@ -129,5 +114,29 @@ input{
 #boton-reiniciar{
     border: none;
     color: #11468F;
+    font-family: 'Poppins', sans-serif;
+}
 
+.ataques{
+    display: grid;
+    grid-template-columns: 100px 100px;
+    color: white;
+}
+
+#vidas-jugador, #vidas-enemigo {
+  font-size: 32px;
+  margin-bottom: 0;
+}
+
+.ataques-jugador, .ataques-enemigo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Media queries */
+@media (max-width: 560px) {
+  .tarjetas, .tarjetas-ataques {
+    flex-direction: column;
+  }
 }
