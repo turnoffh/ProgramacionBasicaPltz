@@ -113,3 +113,21 @@ input{
     color: white;
     font-family: 'Poppins', sans-serif;
 }
+
+#mensajes{
+    width: 280px;
+    background: #EEEEEE;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center; /* alineacion vertical  */
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+}
+
+#boton-reiniciar{
+    border: none;
+    color: #11468F;
+
+}

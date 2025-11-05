@@ -8,7 +8,7 @@ function iniciarJuego() {
     vidasEnemigo = 3;
     let selAtaque = document.getElementById('seleccionar-ataque');
     selAtaque.style.display = 'none';
-    let secMensajes = document.getElementById('mensajes');
+    let secMensajes = document.getElementById('resultado');
     secMensajes.style.display = 'none';
     let botonMascotaJugador = document.getElementById('boton-mascota');
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
@@ -56,7 +56,7 @@ function seleccionarMascotaJugador() {
     botonMascotaJugador.disabled = true;
     let selAtaque = document.getElementById('seleccionar-ataque');
     selAtaque.style.display = 'flex';
-    let secMensajes = document.getElementById('mensajes');
+    let secMensajes = document.getElementById('resultado');
     secMensajes.style.display = 'block';
     let secSeleccionarMascota = document.getElementById('seleccionar-mascota');
     secSeleccionarMascota.style.display = 'none';
@@ -127,10 +127,10 @@ function revisarVidas() {
     let vidasEnemigoHtml = document.getElementById('vidas-enemigo');
     vidasEnemigoHtml.innerHTML = vidasEnemigo;
     if (vidasEnemigo == 0) {
-        alert('FELICIDADES! GANASTE EL COMBATE');
+        crearMensaje('FELICIDADES, GANASTE EL COMBATE');
         bloquearBotones();
     } else if (vidasJugador == 0) {
-        alert('LO SIENTO, PERDISTE EL COMBATE');
+        crearMensaje('LO SIENTO, PERDISTE EL COMBATE');
         bloquearBotones();
     }
 
@@ -152,10 +152,19 @@ function reiniciarJuego() {
 }
 
 function crearMensaje(resultado) {
-    let sectionMensajes = document.getElementById('mensajes');
-    let mensaje = document.createElement('p');
-    mensaje.innerHTML = 'Tu mascota atacó con <b>' + ataqueJugador + '</b> al enemigo, la mascota del enemigo atacó con <b>' + ataqueEnemigo + '</b>. Resultado: <b>' + resultado + '</b>';
-    sectionMensajes.appendChild(mensaje);
+    let sectionMensajes = document.getElementById('resultado');
+    let ataquesDelJugador = document.getElementById('ataques-del-jugador');
+    let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo');
+
+    let nuevoAtaqueJugador = document.createElement('p');
+    let nuevoAtaqueEnemigo = document.createElement('p');
+
+    sectionMensajes.innerHTML = resultado;
+    nuevoAtaqueJugador.innerHTML = ataqueJugador;
+    nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo;
+
+    ataquesDelJugador.appendChild(nuevoAtaqueJugador);
+    ataquesDelEnemigo.appendChild(nuevoAtaqueEnemigo);
 }
 
 function aleatorio(min, max) {
