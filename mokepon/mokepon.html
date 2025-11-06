@@ -13,23 +13,24 @@
             <h1 class="titulo" id="">MOKEPON! 🔥💧🌱</h1>
             <h2 class="subtitulo">Elige tu mascota</h2>
             <div class="tarjetas">
+                <input type="radio" name="mascota" id="hipodoge" /> <!-- Name es para decir el grupo al que pertenece-->
                 <label class="tarjeta-mokepon" for="hipodoge">
-                    <p>Samuel</p>
+                    <p>Hipodoge</p>
                     <img src="assets/mokepons_mokepon_hipodoge_attack.png" alt="Samuel" />
                 </label>
-                <input type="radio" name="mascota" id="hipodoge" /> <!-- Name es para decir el grupo al que pertenece-->
 
+                <input type="radio" name="mascota" id="capipepo" />               
                 <label class="tarjeta-mokepon" for="capipepo">
                     <p>Capipepo</p>
                     <img src="assets/mokepons_mokepon_capipepo_attack.png" alt="capipepo" />
                 </label>
-                <input type="radio" name="mascota" id="capipepo" />
 
+                <input type="radio" name="mascota" id="ratigueya" />
                 <label class="tarjeta-mokepon" for="ratigueya">
                     <p>Ratigueya</p>
                     <img src="assets/mokepons_mokepon_ratigueya_attack.png" alt="ratigueya" />
                 </label>
-                <input type="radio" name="mascota" id="ratigueya" />
+                
             </div>
 
             <button id="boton-mascota">Seleccionar</button> <!-- Tipo inline block -->
@@ -54,12 +55,12 @@
             </div>
 
             <div class="ataques">
-                <div>
+                <div class="ataques-del-jugador">
                     <b><p id="mascota-jugador"></p></b>
                     <p id="vidas-jugador"> vidas</p>
                     <div id="ataques-del-jugador"></div>
                 </div>
-                <div>
+                <div class="ataques-del-enemigo">
                     <b><p id="mascota-enemigo"></p></b>
                     <p id="vidas-enemigo"> vidas</p>
                     <div id="ataques-del-enemigo"></div>

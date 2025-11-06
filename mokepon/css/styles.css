@@ -80,6 +80,10 @@ body {
 input{
     display: none;
 }
+/* Pseudo clases: Funcionan para elementos cuando hay eventos */ 
+input:checked + label{ /*seleccionamos el hermano siguiente con el mas */
+    background-color: #5d8BF4;
+}
 
 #seleccionar-ataque{
     display:flex;
@@ -121,6 +125,7 @@ input{
     display: grid;
     grid-template-columns: 100px 100px;
     color: white;
+    text-align: center;
 }
 
 #vidas-jugador, #vidas-enemigo {
@@ -132,6 +137,7 @@ input{
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 /* Media queries */
@@ -140,3 +146,4 @@ input{
     flex-direction: column;
   }
 }
+
