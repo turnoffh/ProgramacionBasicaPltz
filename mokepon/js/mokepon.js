@@ -4,6 +4,7 @@ class Mokepon { //Clases inician con mayuscula
         this.nombre = nombre; //this hace referencia a la misma clase Mokepon
         this.foto = foto;
         this.vida = vida;
+        this.ataques = [];
     }
 }
 //#endregion
@@ -37,7 +38,27 @@ let mokHipodoge = new Mokepon('Hipodoge', '.assets/mokepons_mokepon_hipodoge_att
 let mokCapipepo = new Mokepon('Capipepo', '.assets/mokepons_mokepon_capipepo_attack.png', 5);
 let mokRatigueya = new Mokepon('Ratigueya', '.assets/mokepons_mokepon_ratigueya_attack.png', 5);
 
-mokepones.push(mokHipodoge, mokCapipepo, mokRatigueya);
+mokHipodoge.ataques.push(
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '💧', id: 'boton-tierra' },
+    { nombre: '🔥', id: 'boton-agua' },
+    { nombre: '🌱', id: 'boton-tierra' }
+)
+mokCapipepo.ataques.push(
+    { nombre: '🌱', id: 'boton-agua' },
+    { nombre: '🌱', id: 'boton-agua' },
+    { nombre: '🌱', id: 'boton-tierra' },
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '🔥', id: 'boton-tierra' }
+)
+mokRatigueya.ataques.push(
+    { nombre: '🔥', id: 'boton-agua' },
+    { nombre: '🔥', id: 'boton-agua' },
+    { nombre: '🔥', id: 'boton-tierra' },
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '🌱', id: 'boton-tierra' }
+)
 //#endregion
 
 //#region funciones
