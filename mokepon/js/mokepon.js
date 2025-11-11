@@ -1,4 +1,15 @@
+//#region Clases
+class Mokepon { //Clases inician con mayuscula
+    constructor(nombre, foto, vida) {
+        this.nombre = nombre; //this hace referencia a la misma clase Mokepon
+        this.foto = foto;
+        this.vida = vida;
+    }
+}
+//#endregion
+
 //let permite cambiar, const no
+//#region Variables y constantes
 const selAtaque = document.getElementById('seleccionar-ataque');
 const secMensajes = document.getElementById('resultado');
 const botonMascotaJugador = document.getElementById('boton-mascota');
@@ -17,11 +28,19 @@ const mascotaEnemigo = document.getElementById('mascota-enemigo');
 const ataquesDelJugador = document.getElementById('ataques-del-jugador');
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo');
 
+let mokepones = []; //arreglo vacio
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+let mokHipodoge = new Mokepon('Hipodoge', '.assets/mokepons_mokepon_hipodoge_attack.png', 5);
+let mokCapipepo = new Mokepon('Capipepo', '.assets/mokepons_mokepon_capipepo_attack.png', 5);
+let mokRatigueya = new Mokepon('Ratigueya', '.assets/mokepons_mokepon_ratigueya_attack.png', 5);
 
+mokepones.push(mokHipodoge, mokCapipepo, mokRatigueya);
+//#endregion
+
+//#region funciones
 function iniciarJuego() {
     selAtaque.style.display = 'none';
     secMensajes.style.display = 'none';
@@ -152,5 +171,5 @@ function crearMensaje(resultado) {
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
+//#endregion
 window.addEventListener('load', iniciarJuego); //Cuando el navegador cargue, se ejecuta la función iniciarJuego
