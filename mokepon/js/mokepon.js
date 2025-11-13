@@ -27,11 +27,11 @@ const contenedorTarjetas = document.getElementById('contenedor-tarjetas');
 const contenedorAtaques = document.getElementById('contenedor-ataques');
 
 let mokepones = []; //arreglo vacio
-let ataqueEnemigo;
-let vidasJugador = 3;
-let vidasEnemigo = 3;
+let victoriasJugador = 0;
+let victoriasEnemigo = 0;
 let opcionDeMokepones;
 let ataquesMokepon;
+let ataquesMokeponEnemigo;
 let hipodoge;
 let capipepo;
 let ratigueya;
@@ -39,8 +39,11 @@ let botonFuego;
 let botonAgua;
 let botonTierra;
 let botones = [];
+let indexAtaqueJugador;
+let indexAtaqueEnemigo;
 let mascotaSeleccionadaJug;
 let arrAtaqueJugador = [];
+let arrAtaqueEnemigo = [];
 let mokHipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.png', 5);
 let mokCapipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.png', 5);
 let mokRatigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5);
@@ -96,8 +99,8 @@ function iniciarJuego() {
     
     botonReiniciar.addEventListener('click', reiniciarJuego);
 
-    vidasJugadorHtml.innerHTML = vidasJugador;
-    vidasEnemigoHtml.innerHTML = vidasEnemigo;
+    vidasJugadorHtml.innerHTML = victoriasJugador;
+    vidasEnemigoHtml.innerHTML = victoriasEnemigo;
 }
 
 function seleccionarMascotaJugador() {
@@ -155,68 +158,84 @@ function secuenciaAtaque() {
             if(e.target.textContent === '🔥') {
                 arrAtaqueJugador.push('FUEGO');
                 boton.style.background = '#112f58';
+                boton.disabled = true;
             } else if (e.target.textContent === '💧') {
                 arrAtaqueJugador.push('AGUA');
                 boton.style.background = '#112f58';
+                boton.disabled = true;
             } else {
                 arrAtaqueJugador.push('TIERRA');
                 boton.style.background = '#112f58';
+                boton.disabled = true;
             }
+            ataqueAleatorioEnemigo();
         });
     });
+    
 }
 
 function seleccionarMascotaEnemigo() {
     let numeroAleatorio = aleatorio(0, mokepones.length -1);
+    ataquesMokeponEnemigo = mokepones[numeroAleatorio].ataques;
     mascotaEnemigo.innerHTML = mokepones[numeroAleatorio].nombre;
+    secuenciaAtaque();
 }
 
 function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(1, 3);
-    if (ataqueAleatorio == 1) {
-        ataqueEnemigo = 'FUEGO';
-    } else if (ataqueAleatorio == 2) {
-        ataqueEnemigo = 'AGUA';
+    let ataqueAleatorio = aleatorio(0, ataquesMokeponEnemigo.length -1);
+    if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
+        arrAtaqueEnemigo.push('FUEGO');
+    } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4) {
+        arrAtaqueEnemigo.push('AGUA');
     } else {
-        ataqueEnemigo = 'TIERRA';
+        arrAtaqueEnemigo.push('TIERRA');
     }
-    combate();
+    iniciarPelea();
+}
+
+function iniciarPelea() {
+    if(arrAtaqueJugador.length === 5) {
+        combate();
+    }
+}
+
+function indexAmbosOponentes(jugador, enemigo) { 
+    indexAtaqueJugador = arrAtaqueJugador[jugador];
+    indexAtaqueEnemigo = arrAtaqueEnemigo[enemigo];
 }
 
 function combate() {
-    if (ataqueJugador == ataqueEnemigo) {
-        crearMensaje('EMPATE');
-    } else if ((ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') || 
-                (ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO') || 
-                (ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA')) 
-    {
-        crearMensaje('GANASTE');
-        vidasEnemigo--;
-        revisarVidas();
-    } else {
-        crearMensaje('PERDISTE');
-        vidasJugador--;
-        revisarVidas();
+    for (let index = 0; index < arrAtaqueJugador.length; index++) {
+        if (arrAtaqueJugador[index] === arrAtaqueEnemigo[index]) {
+            indexAmbosOponentes(index, index);
+            crearMensaje();
+        } else if ((arrAtaqueJugador[index] == 'FUEGO' && arrAtaqueEnemigo[index] == 'TIERRA') || 
+                (arrAtaqueJugador[index] == 'AGUA' && arrAtaqueEnemigo[index] == 'FUEGO') || 
+                (arrAtaqueJugador[index] == 'TIERRA' && arrAtaqueEnemigo[index] == 'AGUA')) 
+        {
+            indexAmbosOponentes(index, index);
+            crearMensaje();
+            victoriasJugador++;
+            vidasJugadorHtml.innerHTML = victoriasJugador;
+        } else {
+            indexAmbosOponentes(index, index);
+            crearMensaje();
+            victoriasEnemigo++;
+            vidasEnemigoHtml.innerHTML = victoriasEnemigo;
+        }
     }
-}
-
-function revisarVidas() {
-    vidasJugadorHtml.innerHTML = vidasJugador;
-    vidasEnemigoHtml.innerHTML = vidasEnemigo;
+    revisarGanador();
     
-    if (vidasEnemigo == 0) {
-        crearMensaje('FELICIDADES, GANASTE EL COMBATE');
-        bloquearBotones();
-    } else if (vidasJugador == 0) {
-        crearMensaje('LO SIENTO, PERDISTE EL COMBATE');
-        bloquearBotones();
-    }
 }
 
-function bloquearBotones() {
-    botonFuego.disabled = true;
-    botonAgua.disabled = true;
-    botonTierra.disabled = true;
+function revisarGanador() {
+    if (victoriasJugador > victoriasEnemigo) {
+        crearMensajeFinal('¡FELICIDADES! ¡GANASTE EL JUEGO!');
+    } else if (victoriasEnemigo > victoriasJugador) {
+        crearMensajeFinal('LO SIENTO, PERDISTE EL JUEGO');
+    } else {
+        crearMensajeFinal('EL JUEGO TERMINÓ EN EMPATE');
+    }
     botonReiniciar.style.display = 'block';
 }
 
@@ -224,16 +243,19 @@ function reiniciarJuego() {
     location.reload();
 }
 
-function crearMensaje(resultado) {
+function crearMensaje() {
     let nuevoAtaqueJugador = document.createElement('p');
     let nuevoAtaqueEnemigo = document.createElement('p');
 
-    secMensajes.innerHTML = resultado;
-    nuevoAtaqueJugador.innerHTML = ataqueJugador;
-    nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo;
+    nuevoAtaqueJugador.innerHTML = indexAtaqueJugador;
+    nuevoAtaqueEnemigo.innerHTML = indexAtaqueEnemigo;
 
     ataquesDelJugador.appendChild(nuevoAtaqueJugador);
     ataquesDelEnemigo.appendChild(nuevoAtaqueEnemigo);
+}
+
+function crearMensajeFinal(resultado) {
+    secMensajes.innerHTML = resultado;
 }
 
 function aleatorio(min, max) {
