@@ -25,6 +25,9 @@ const ataquesDelJugador = document.getElementById('ataques-del-jugador');
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo');
 const contenedorTarjetas = document.getElementById('contenedor-tarjetas');
 const contenedorAtaques = document.getElementById('contenedor-ataques');
+const secVerMapa = document.getElementById('ver-mapa');
+const canvas = document.getElementById('mapa');
+const lienzo = canvas.getContext('2d');
 
 let mokepones = []; //arreglo vacio
 let victoriasJugador = 0;
@@ -80,6 +83,7 @@ function iniciarJuego() {
     selAtaque.style.display = 'none';
     secMensajes.style.display = 'none';
     botonReiniciar.style.display = 'none';
+    secVerMapa.style.display = 'none';
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `<input type="radio" name="mascota" id=${mokepon.nombre} />
@@ -122,7 +126,13 @@ function seleccionarMascotaJugador() {
     
     botonMascotaJugador.disabled = true;
     
-    selAtaque.style.display = 'flex';
+    //selAtaque.style.display = 'flex';
+    secVerMapa.style.display = 'flex';
+    let imagenDeCapipepo = new Image();
+    imagenDeCapipepo.src = './assets/mokepons_mokepon_capipepo_attack.png';
+    imagenDeCapipepo.onload = function() {
+        lienzo.drawImage(imagenDeCapipepo, 20, 40, 100, 100);
+    };
     secMensajes.style.display = 'block';
     secSeleccionarMascota.style.display = 'none';
 }

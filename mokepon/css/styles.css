@@ -140,6 +140,17 @@ input:checked + label{ /*seleccionamos el hermano siguiente con el mas */
   text-align: center;
 }
 
+#ver-mapa {
+  flex-direction: column;
+  justify-content: center; /* alineacion vertical  */
+  align-items: center; /* alineacion horizontal */
+ 
+}
+
+#mapa {
+    border: 2px solid white;
+}
+
 /* Media queries */
 @media (max-width: 560px) {
   .tarjetas, .tarjetas-ataques {
