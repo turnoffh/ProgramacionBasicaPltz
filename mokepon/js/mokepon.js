@@ -11,6 +11,8 @@ class Mokepon { //Clases inician con mayuscula
         this.alto = 80;
         this.mapaFoto = new Image();
         this.mapaFoto.src = foto;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
     }
 }
 //#endregion
@@ -56,6 +58,7 @@ let arrAtaqueEnemigo = [];
 let mokHipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.png', 5);
 let mokCapipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.png', 5);
 let mokRatigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.png', 5);
+let intervalo;
 
 mokHipodoge.ataques.push(
     { nombre: '💧', id: 'boton-agua' },
@@ -132,9 +135,11 @@ function seleccionarMascotaJugador() {
     
     botonMascotaJugador.disabled = true;
     
-    //selAtaque.style.display = 'flex';
     secVerMapa.style.display = 'flex';
-    
+    intervalo = setInterval(pintarPersonaje, 50);
+
+    window.addEventListener('keydown', sePresionoTecla);
+    window.addEventListener('keyup', detenerMovimiento);    
     secMensajes.style.display = 'block';
     secSeleccionarMascota.style.display = 'none';
 }
@@ -275,6 +280,8 @@ function aleatorio(min, max) {
 }
 
 function pintarPersonaje() {
+    mokCapipepo.x = mokCapipepo.x + mokCapipepo.velocidadX;
+    mokCapipepo.y = mokCapipepo.y + mokCapipepo.velocidadY;
     lienzo.clearRect(0, 0, canvas.width, canvas.height); //limpia el canvas
     lienzo.drawImage(
         mokCapipepo.mapaFoto,
@@ -285,9 +292,41 @@ function pintarPersonaje() {
     )
 }
 
-function moverCapipepo() {
-    mokCapipepo.x = mokCapipepo.x + 5;
-    pintarPersonaje();
+function moverDerecha() {
+    mokCapipepo.velocidadX = 5;
+}
+
+function moverIzquierda() {
+    mokCapipepo.velocidadX = -5;
+}
+function moverAbajo() {
+    mokCapipepo.velocidadY = 5;
+}
+function moverArriba() {
+    mokCapipepo.velocidadY = -5;
+}
+function detenerMovimiento() {
+    mokCapipepo.velocidadX = 0;
+    mokCapipepo.velocidadY = 0;
+}
+
+function sePresionoTecla(event) {
+    switch (event.key) {
+        case 'ArrowUp':
+            moverArriba();
+            break;
+        case 'ArrowDown':
+            moverAbajo();
+            break;
+        case 'ArrowLeft':
+            moverIzquierda();
+            break;
+        case 'ArrowRight':
+            moverDerecha();
+            break;
+        default:
+            break;
+    }
 }
 //#endregion
 window.addEventListener('load', iniciarJuego); //Cuando el navegador cargue, se ejecuta la función iniciarJuego
