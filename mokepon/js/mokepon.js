@@ -5,6 +5,12 @@ class Mokepon { //Clases inician con mayuscula
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
+        this.x = 20;
+        this.y = 30;
+        this.ancho = 80;
+        this.alto = 80;
+        this.mapaFoto = new Image();
+        this.mapaFoto.src = foto;
     }
 }
 //#endregion
@@ -128,11 +134,7 @@ function seleccionarMascotaJugador() {
     
     //selAtaque.style.display = 'flex';
     secVerMapa.style.display = 'flex';
-    let imagenDeCapipepo = new Image();
-    imagenDeCapipepo.src = './assets/mokepons_mokepon_capipepo_attack.png';
-    imagenDeCapipepo.onload = function() {
-        lienzo.drawImage(imagenDeCapipepo, 20, 40, 100, 100);
-    };
+    
     secMensajes.style.display = 'block';
     secSeleccionarMascota.style.display = 'none';
 }
@@ -270,6 +272,22 @@ function crearMensajeFinal(resultado) {
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function pintarPersonaje() {
+    lienzo.clearRect(0, 0, canvas.width, canvas.height); //limpia el canvas
+    lienzo.drawImage(
+        mokCapipepo.mapaFoto,
+        mokCapipepo.x,
+        mokCapipepo.y,
+        mokCapipepo.ancho,
+        mokCapipepo.alto
+    )
+}
+
+function moverCapipepo() {
+    mokCapipepo.x = mokCapipepo.x + 5;
+    pintarPersonaje();
 }
 //#endregion
 window.addEventListener('load', iniciarJuego); //Cuando el navegador cargue, se ejecuta la función iniciarJuego
