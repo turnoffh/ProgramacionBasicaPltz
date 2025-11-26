@@ -136,10 +136,8 @@ function seleccionarMascotaJugador() {
     botonMascotaJugador.disabled = true;
     
     secVerMapa.style.display = 'flex';
-    intervalo = setInterval(pintarPersonaje, 50);
-
-    window.addEventListener('keydown', sePresionoTecla);
-    window.addEventListener('keyup', detenerMovimiento);    
+    iniciarMapa();
+    
     secMensajes.style.display = 'block';
     secSeleccionarMascota.style.display = 'none';
 }
@@ -295,7 +293,6 @@ function pintarPersonaje() {
 function moverDerecha() {
     mokCapipepo.velocidadX = 5;
 }
-
 function moverIzquierda() {
     mokCapipepo.velocidadX = -5;
 }
@@ -327,6 +324,12 @@ function sePresionoTecla(event) {
         default:
             break;
     }
+}
+
+function iniciarMapa() {
+    intervalo = setInterval(pintarPersonaje, 50);
+    window.addEventListener('keydown', sePresionoTecla);
+    window.addEventListener('keyup', detenerMovimiento);    
 }
 //#endregion
 window.addEventListener('load', iniciarJuego); //Cuando el navegador cargue, se ejecuta la función iniciarJuego
