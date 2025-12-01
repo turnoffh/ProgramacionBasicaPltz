@@ -101,6 +101,30 @@ mokRatigueya.ataques.push(
     { nombre: '🌱', id: 'boton-tierra' }
 )
 
+mokHipodogeEnem.ataques.push(
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '🔥', id: 'boton-fuego' },
+    { nombre: '🌱', id: 'boton-tierra' }
+)
+
+mokCapipepoEnem.ataques.push(
+    { nombre: '🌱', id: 'boton-tierra' },
+    { nombre: '🌱', id: 'boton-tierra' },
+    { nombre: '🌱', id: 'boton-tierra' },
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '🔥', id: 'boton-fuego' }
+)
+
+mokRatigueyaEnem.ataques.push(
+    { nombre: '🔥', id: 'boton-fuego' },
+    { nombre: '🔥', id: 'boton-fuego' },
+    { nombre: '🔥', id: 'boton-fuego' },
+    { nombre: '💧', id: 'boton-agua' },
+    { nombre: '🌱', id: 'boton-tierra' }
+)
+
 mokepones.push(mokHipodoge, mokCapipepo, mokRatigueya);
 //#endregion
 
@@ -147,7 +171,6 @@ function seleccionarMascotaJugador() {
         alert('Selecciona una mascota');
         return;
     }
-    seleccionarMascotaEnemigo();
     extraerAtaques(mascotaSeleccionadaJug);
     
     botonMascotaJugador.disabled = true;
@@ -180,11 +203,10 @@ function mostrarAtaques(ataques) {
     botonAgua = document.getElementById('boton-agua');
     botonTierra = document.getElementById('boton-tierra');
     botones = document.querySelectorAll('.BA');
-        
-    secuenciaAtaque();
 }
 
 function secuenciaAtaque() {
+    console.log("entro a secuencia ataque");
     botones.forEach((boton) => {
         boton.addEventListener('click', (e) => {
             if(e.target.textContent === '🔥') {
@@ -206,10 +228,9 @@ function secuenciaAtaque() {
     
 }
 
-function seleccionarMascotaEnemigo() {
-    let numeroAleatorio = aleatorio(0, mokepones.length -1);
-    ataquesMokeponEnemigo = mokepones[numeroAleatorio].ataques;
-    mascotaEnemigo.innerHTML = mokepones[numeroAleatorio].nombre;
+function seleccionarMascotaEnemigo(enemigo) {
+    ataquesMokeponEnemigo = enemigo.ataques;
+    mascotaEnemigo.innerHTML = enemigo.nombre;
     secuenciaAtaque();
 }
 
@@ -386,7 +407,10 @@ function revisarColision(enemigo) {
             return;
     }
     detenerMovimiento();
-    alert("Colision con " + enemigo.nombre);
+    clearInterval(intervalo);
+    selAtaque.style.display = 'flex';
+    secVerMapa.style.display = 'none';
+    seleccionarMascotaEnemigo(enemigo)
     
 }
 //#endregion
