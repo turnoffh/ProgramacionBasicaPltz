@@ -309,6 +309,11 @@ function pintarCanvas() {
     mokHipodogeEnem.pintarMokepon();
     mokCapipepoEnem.pintarMokepon();
     mokRatigueyaEnem.pintarMokepon();
+    if(mascJugadorObjeto.velocidadX !==0 || mascJugadorObjeto.velocidadY !==0) {
+        revisarColision(mokHipodogeEnem);
+        revisarColision(mokCapipepoEnem);
+        revisarColision(mokRatigueyaEnem);
+    }
 }
 
 function moverDerecha() {
@@ -362,6 +367,27 @@ function obtenerObjetoMascota() {
             return mokepones[i];
         }
     }
+}
+
+function revisarColision(enemigo) {
+    const arribaEnemigo = enemigo.y;
+    const abajoEnemigo = enemigo.y + enemigo.alto;
+    const izquierdaEnemigo = enemigo.x;
+    const derechaEnemigo = enemigo.x + enemigo.ancho;
+    const arribaMascota = mascJugadorObjeto.y;
+    const abajoMascota = mascJugadorObjeto.y + mascJugadorObjeto.alto;
+    const izquierdaMascota = mascJugadorObjeto.x;
+    const derechaMascota = mascJugadorObjeto.x + mascJugadorObjeto.ancho;
+
+    if( abajoMascota < arribaEnemigo || 
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo ) {
+            return;
+    }
+    detenerMovimiento();
+    alert("Colision con " + enemigo.nombre);
+    
 }
 //#endregion
 window.addEventListener('load', iniciarJuego); //Cuando el navegador cargue, se ejecuta la función iniciarJuego
