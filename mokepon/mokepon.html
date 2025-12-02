@@ -5,6 +5,7 @@
         <meta charset="UTF-8" />
         <title>MOKEPON!</title>
         <link rel="stylesheet" href="css/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
 
     <body>
@@ -17,12 +18,14 @@
         </section>
 
         <section id="ver-mapa">
-            <h1 class="titulo" id="">Recorre el mapa! </h1>
+            <h2 class="subtitulo" id="">Recorre el mapa! </h2>
             <canvas id="mapa"></canvas>
             <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
-            <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
-            <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
-            <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
+            <div>
+                <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
+                <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
+                <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
+            </div>            
         </section>
 
         <section id="seleccionar-ataque">
