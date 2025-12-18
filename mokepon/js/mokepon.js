@@ -76,6 +76,7 @@ let mapBackground = new Image();
 mapBackground.src = './assets/mokemap.png';
 let alturaQueBuscamos;
 let anchoDelMapa = window.innerWidth - 20; // -20 parta que tenga un espacio a los lados
+let jugadorId = null;
 const anchoMaximoDelMapa = 350;
 
 if (anchoDelMapa > anchoMaximoDelMapa) {
@@ -158,13 +159,29 @@ function iniciarJuego() {
         ratigueya = document.getElementById('Ratigueya');
     })
     
-
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
-    
     botonReiniciar.addEventListener('click', reiniciarJuego);
 
     vidasJugadorHtml.innerHTML = victoriasJugador;
     vidasEnemigoHtml.innerHTML = victoriasEnemigo;
+
+    unirseAlJuego();
+}
+
+function unirseAlJuego() {
+    fetch("http://localhost:8080/unirse") //hace una peticion get por defecto
+        .then(function (res) {
+            if (res.ok) {
+                res.text()
+                .then(function (respuesta) {
+                    console.log(respuesta);
+                    jugadorId = respuesta;
+                })
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 }
 
 function seleccionarMascotaJugador() {
@@ -190,7 +207,22 @@ function seleccionarMascotaJugador() {
     
     secMensajes.style.display = 'block';
     secSeleccionarMascota.style.display = 'none';
+
+    seleccionarMokepon(mascotaSeleccionadaJug);
 }
+
+function seleccionarMokepon(mascotaSeleccionadaJug) {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            mokepon: mascotaSeleccionadaJug
+        })
+    })
+}
+
 
 function extraerAtaques(mascotaSeleccionadaJug) {
     let ataques;
@@ -336,6 +368,9 @@ function pintarCanvas() {
         canvas.height
     );
     mascJugadorObjeto.pintarMokepon();
+
+    enviarPosicion(mascJugadorObjeto.x, mascJugadorObjeto.y);
+
     mokHipodogeEnem.pintarMokepon();
     mokCapipepoEnem.pintarMokepon();
     mokRatigueyaEnem.pintarMokepon();
@@ -344,6 +379,19 @@ function pintarCanvas() {
         revisarColision(mokCapipepoEnem);
         revisarColision(mokRatigueyaEnem);
     }
+}
+
+function enviarPosicion(x, y) {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            x,
+            y
+        })
+    })
 }
 
 function moverDerecha() {
