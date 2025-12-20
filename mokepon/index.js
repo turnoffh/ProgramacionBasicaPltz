@@ -57,10 +57,9 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => { //Ruta para recibir la 
         jugadores[jugadorIndex].actualizarPosicion(x, y);//Actualizar la posicion del jugador
     }
     
-    console.log(jugadores[jugadorIndex].x, jugadores[jugadorIndex].y);//Mostrar en consola la posicion del jugador
+    const enemigos = jugadores.filter((jugador) => jugador.id !== jugadorId);//Filtrar los jugadores que no son el jugador actual
     
-    res.end();
+    res.send({enemigos});//Enviar los enemigos como respuesta
 });
-
 
 app.listen(8080, () => console.log("Servidor corriendo en puerto 8080"));//Puerto donde se va a ejecutar el servidor
