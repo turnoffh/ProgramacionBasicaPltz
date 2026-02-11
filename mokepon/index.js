@@ -5,6 +5,7 @@ const app = express();//Crear el servidor
 
 app.use(cors());//Usar cors en el servidor
 app.use(express.json());//Configurar el servidor para que entienda JSON
+app.use(express.static('public'));//Configurar el servidor para que sirva archivos estáticos desde la carpeta "public"
 
 const jugadores = [];//Array para guardar los jugadores
 class Jugador {
