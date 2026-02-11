@@ -76,4 +76,15 @@ app.post("/mokepon/:jugadorId/ataques", (req, res) => { //Ruta para recibir el m
     res.end();//Terminar la respuesta
 });
 
+app.get("/mokepon/:jugadorId/ataques", (req, res) => { //Ruta para recibir el mokepon del jugador
+    const jugadorId = req.params.jugadorId || "";//Obtener el id del jugador de los parametros de la ruta
+    
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);//Buscar el indice del jugador en el array de jugadores
+    if (jugadorIndex >= 0) {//Si el jugador existe
+        res.send({ataques: jugadores[jugadorIndex].ataques});//Enviar los ataques del jugador como respuesta
+    } else {
+        res.send([]);//Enviar un array vacío si no se encuentra el jugador
+    }
+});
+
 app.listen(8080, () => console.log("Servidor corriendo en puerto 8080"));//Puerto donde se va a ejecutar el servidor

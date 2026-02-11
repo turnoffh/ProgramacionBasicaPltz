@@ -241,7 +241,7 @@ function secuenciaAtaque() {
 }
 function enviarAtaques() {
     fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`, {
-        method: "POST",
+        method: "post",
         headers: {
             "Content-Type": "application/json"
         },
@@ -249,18 +249,26 @@ function enviarAtaques() {
             ataques: arrAtaqueJugador
         })
     })
-    .then(function (res) {  
-        if (res.ok) {
-            res.json()
-            .then(function ({ ataques }) {
-                ataquesMokeponEnemigo = ataques;
-                iniciarPelea();
-            })
-        }
-    })
-    .catch(function (err) {
-        console.log(err);
-    });
+    
+    intervalo = setInterval(obtenerAtaques, 50);
+}
+function obtenerAtaques() {
+    fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`) //hace una peticion get por defecto
+        .then(function (res) {
+            if (res.ok) {
+                res.json()
+                .then(function ({ ataques }) {
+                    if(ataques.length === 5) {
+                        ataquesMokeponEnemigo = ataques;
+                        arrAtaqueEnemigo = ataques;
+                        combate();
+                    }   
+                })
+            }
+        })
+        .catch(function (err) {
+            console.log(err);   
+        });
 }
 function seleccionarMascotaEnemigo(enemigo) {
     ataquesMokeponEnemigo = enemigo.ataques;
@@ -288,6 +296,7 @@ function indexAmbosOponentes(jugador, enemigo) {
     indexAtaqueEnemigo = arrAtaqueEnemigo[enemigo];
 }
 function combate() {
+    clearInterval(intervalo);
     for (let index = 0; index < arrAtaqueJugador.length; index++) {
         if (arrAtaqueJugador[index] === arrAtaqueEnemigo[index]) {
             indexAmbosOponentes(index, index);
