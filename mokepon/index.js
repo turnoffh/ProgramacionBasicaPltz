@@ -20,6 +20,10 @@ class Jugador {
         this.x = x;//Asignar la posicion x al jugador
         this.y = y;//Asignar la posicion y al jugador
     }
+
+    asignarAtaques(ataques) {
+        this.ataques = ataques;//Asignar los ataques al jugador
+    }
 }
 
 class Mokepon {
@@ -44,7 +48,6 @@ app.post("/mokepon/:jugadorId", (req, res) => { //Ruta para recibir el mokepon d
     if (jugadorIndex >= 0) {//Si el jugador existe
         jugadores[jugadorIndex].asignarMokepon(mok);//Asignar el mokepon al jugador
     }   
-    console.log(jugadores);//Mostrar en consola el array de jugadores    
     res.end();//Terminar la respuesta
 });
 
@@ -60,6 +63,17 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => { //Ruta para recibir la 
     const enemigos = jugadores.filter((jugador) => jugador.id !== jugadorId);//Filtrar los jugadores que no son el jugador actual
     
     res.send({enemigos});//Enviar los enemigos como respuesta
+});
+
+app.post("/mokepon/:jugadorId/ataques", (req, res) => { //Ruta para recibir el mokepon del jugador
+    const jugadorId = req.params.jugadorId || "";//Obtener el id del jugador de los parametros de la ruta
+    const ataques = req.body.ataques || [];//Obtener el mokepon del cuerpo de la peticion   
+
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);//Buscar el indice del jugador en el array de jugadores
+    if (jugadorIndex >= 0) {//Si el jugador existe
+        jugadores[jugadorIndex].asignarAtaques(ataques);//Asignar los ataques al jugador
+    }   
+    res.end();//Terminar la respuesta
 });
 
 app.listen(8080, () => console.log("Servidor corriendo en puerto 8080"));//Puerto donde se va a ejecutar el servidor
